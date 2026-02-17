@@ -1,13 +1,15 @@
 # FastAPI Posts + Comments API
 
-A simple FastAPI application for managing posts and comments.
+A FastAPI application for managing posts and comments with SQLite database storage.
 
 ## Features
 
 - Create and retrieve posts
 - Create and retrieve comments for posts
 - Input validation using Pydantic models
-- Comprehensive test suite with pytest
+- SQLite database with SQLAlchemy ORM
+- Comprehensive test suite with pytest (18 tests)
+- Database migrations and persistent storage
 
 ## Installation
 
@@ -95,11 +97,13 @@ fastapi_project/
 ├── app/
 │   ├── __init__.py
 │   ├── main.py          # FastAPI application and routes
-│   ├── models.py        # Pydantic models
-│   └── storage.py       # In-memory data storage
+│   ├── models.py        # Pydantic schemas for API validation
+│   ├── db_models.py     # SQLAlchemy database models
+│   ├── database.py      # Database configuration and session
+│   └── storage.py       # (deprecated - now using SQLite)
 ├── tests/
 │   ├── __init__.py
-│   ├── conftest.py
+│   ├── conftest.py      # Pytest fixtures with test database
 │   ├── test_posts.py
 │   └── test_comments.py
 ├── venv/                # Virtual environment
@@ -107,7 +111,9 @@ fastapi_project/
 ├── requirements.txt
 ├── pyproject.toml       # Pytest configuration
 ├── run_tests.ps1        # Test runner script
-└── README.md
+├── README.md
+├── fastapi_app.db       # SQLite database (auto-created)
+└── test.db              # Test database (auto-created during tests)
 ```
 
 ## Development
